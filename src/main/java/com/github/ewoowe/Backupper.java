@@ -48,38 +48,23 @@ public class Backupper {
 
     public void doRun() {
         while (true) {
-            System.out.println(Thread.currentThread().getName() + " enter 0");
             if (state == NO_RUNNING) {
                 if (unsafe.compareAndSwapInt(this, stateOffSet, NO_RUNNING, RUNNING)) {
-                    System.out.println(Thread.currentThread().getName() + " enter 1");
                     RUNNER.run();
                     while (state == RUNNING_BACKUP) {
-                        System.out.println(Thread.currentThread().getName() + " enter 2");
                         unsafe.getAndSetInt(this, stateOffSet, RUNNING);
                         RUNNER.run();
                     }
-                    System.out.println(Thread.currentThread().getName() + " enter 3");
-                    if (unsafe.compareAndSwapInt(this, stateOffSet, RUNNING, NO_RUNNING)) {
-                        System.out.println(Thread.currentThread().getName() + " enter 4");
+                    if (unsafe.compareAndSwapInt(this, stateOffSet, RUNNING, NO_RUNNING))
                         break;
-                    }
-                    System.out.println(Thread.currentThread().getName() + " enter 5");
                     // cas fail，state must be RUNNING_BACKUP now，set state to NO_RUNNING to continue while
                     unsafe.getAndSetInt(this, stateOffSet, NO_RUNNING);
                 }
-                System.out.println(Thread.currentThread().getName() + " enter 6");
             } else if (state == RUNNING) {
-                System.out.println(Thread.currentThread().getName() + " enter 7");
-                if (unsafe.compareAndSwapInt(this, stateOffSet, RUNNING, RUNNING_BACKUP)) {
-                    System.out.println(Thread.currentThread().getName() + " enter 8");
+                if (unsafe.compareAndSwapInt(this, stateOffSet, RUNNING, RUNNING_BACKUP))
                     break;
-                }
-                System.out.println(Thread.currentThread().getName() + " enter 9");
             } else if (state == RUNNING_BACKUP) {
-                System.out.println(Thread.currentThread().getName() + " enter 10");
                 break;
-            } else {
-                System.out.println(Thread.currentThread().getName() + " enter 11");
             }
         }
     }
