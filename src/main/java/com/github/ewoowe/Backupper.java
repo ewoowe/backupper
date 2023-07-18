@@ -78,6 +78,8 @@ public class Backupper {
             } else if (state == RUNNING_BACKUP) {
                 System.out.println(Thread.currentThread().getName() + " enter 10");
                 break;
+            } else {
+                System.out.println(Thread.currentThread().getName() + " enter 11");
             }
         }
     }
