@@ -5,6 +5,9 @@ import sun.misc.Unsafe;
 import java.lang.reflect.Field;
 
 /**
+ * run a task but maximum two tasks,
+ * first one is running, second one is waiting util first one done
+ *
  * @author wangcheng@ictnj.ac.cn
  * @since 2023/7/17
  */
@@ -30,9 +33,7 @@ public class Backupper {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new Error(e);
         }
-    }
 
-    static {
         try {
             stateOffSet = unsafe.objectFieldOffset(Backupper.class.getDeclaredField("state"));
         } catch (Exception ex) {
