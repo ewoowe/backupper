@@ -1,9 +1,9 @@
-package com.github.ewoowe;
+package com.github.ewoowe.backupper;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author wangcheng@ictnj.ac.cn
+ * @author wangcheng
  * @since 2023/7/17
  */
 public class Test {

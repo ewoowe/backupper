@@ -1,4 +1,4 @@
-package com.github.ewoowe;
+package com.github.ewoowe.backupper;
 
 import sun.misc.Unsafe;
 
@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
  * run a task but maximum two tasks,
  * first one is running, second one is waiting util first one done
  *
- * @author wangcheng@ictnj.ac.cn
+ * @author wangcheng
  * @since 2023/7/17
  */
 public class Backupper {
