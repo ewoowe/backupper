@@ -13,7 +13,7 @@ public class Test {
     public static void main(String[] args) {
         Backupper backUpper = new Backupper(() -> {
             try {
-                Thread.sleep(0);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -30,11 +30,6 @@ public class Backupper {
     static {
         try {
             unsafe = reflectGetUnsafe();
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new Error(e);
-        }
-
-        try {
             stateOffSet = unsafe.objectFieldOffset(Backupper.class.getDeclaredField("state"));
         } catch (Exception ex) {
             throw new Error(ex);
